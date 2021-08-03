@@ -9,6 +9,8 @@ const List = ({ search }) => {
   const [showModal, setShowModal] = useState(false);
   const [activeObject, setActiveObject] = useState(null);
 
+  const API_KEY = process.env.REACT_APP_API_KEY || process.env.API_KEY;
+
   function getClass(index) {
     return index === activeObject?.id ? "active" : "inactive";
   }
@@ -16,7 +18,7 @@ const List = ({ search }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${search}&page=${pageNum}`).then(response => response.json())
+      await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}&page=${pageNum}`).then(response => response.json())
         .then(data => {
           setRes(data.results)
         });
