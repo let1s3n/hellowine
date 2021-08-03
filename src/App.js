@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
+import './scss/app.scss'
+import {Container} from 'react-bootstrap'
+import SearchBar from './components/SearchBar'
+import List from './components/List'
 
-function App() {
+const App = () => {
+  
+  const [searchQuery,setSearchQuery]=useState('joker');
+  const handleSearch = searchQuery =>{
+    setSearchQuery(searchQuery);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container className="p-5">
+      <h1 className="text-center p-3 mb-3">Buscador de películas</h1>
+      <SearchBar handleSearch = {handleSearch}/>
+      <List search={searchQuery}/>
+    </Container >
+  )
 }
 
-export default App;
+export default App
